@@ -3,8 +3,6 @@
 @import url("./styles/lib.css");
 @import url("./styles/anims.css");
 
-/* pages */
-
 /* layout */
 body {
   min-height: 100dvh;
@@ -31,4 +29,25 @@ body > main {
 body > footer {
   margin-top: 4rem;
   padding: 0.2rem 2rem;
+}
+
+#piano {
+  margin: 2rem auto;
+  width: fit-content;
+  border: 2px solid black;
+
+  .touch {
+    cursor: default;
+    padding: 1.4rem;
+    width: 2rem;
+    aspect-ratio: 1/6;
+    font-weight: bold;
+    box-shadow: 0.2rem 0.2rem 0.2rem black;
+    &.active {
+      box-shadow: inset 0.2rem 0.2rem 0.2rem black;
+    }
+  }
+  .touch:nth-of-type(even) {
+    background: linear-gradient(0deg, hsl(0, 0%, 0%, 0.8), transparent 20%);
+  }
 }

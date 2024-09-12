@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- <link rel="canonical" href="https://" /> -->
-<link rel="canonical" href="http://localhost:8080" />
-<base target="_blank" />
-<noscript>
-<h1
-style="
-text-align: center;
-color: red;
-border: 2px solid;
-background-color: white;
-">
-Navigation difficile ou impossible sans JavaScript. 😭
-</h1>
-</noscript>
-<meta name="description" content="" />
-<link rel="shortcut icon" href="./imgs/icon.png" type="image/png" />
-<!-- <link rel="stylesheet" href="./dist/style.css" />
-<script type="module" src="./dist/script.js"></script> -->
-<link rel="stylesheet" href="./assets/style.css" />
-<script type="module" src="./assets/script.js"></script>
-<title>Html</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="canonical" href="https://" /> -->
+    <link rel="canonical" href="http://localhost:8080" />
+    <base target="_blank" />
+    <noscript>
+      <h1
+        style="
+          text-align: center;
+          color: red;
+          border: 2px solid;
+          background-color: white;
+        "
+      >
+        Navigation difficile ou impossible sans JavaScript. 😭
+      </h1>
+    </noscript>
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="./imgs/icon.png" type="image/png" />
+    <link rel="stylesheet" href="./dist/style.css" />
+    <script type="module" src="./dist/script.js"></script>
+    <!-- <link rel="stylesheet" href="./assets/style.css" />
+    <script type="module" src="./assets/script.js"></script> -->
+    <title>Piano</title>
+  </head>
 
-<body>
-<header>
-<h1>Html</h1>
+  <body>
+    <header>
+      <h1>Piano</h1>
 
-<aside id="notifications"></aside>
-</header>
+      <aside id="notifications"></aside>
+    </header>
 
-<main></main>
+    <main>
+      <section>
+        <div id="piano" class="flex">
+          <div class="touch flex" data-key="q">Q</div>
+          <div class="touch flex" data-key="s">S</div>
+          <div class="touch flex" data-key="d">D</div>
+          <div class="touch flex" data-key="f">F</div>
+          <div class="touch flex" data-key="g">G</div>
+          <div class="touch flex" data-key="h">H</div>
+          <div class="touch flex" data-key="j">J</div>
+          <div class="touch flex" data-key="k">K</div>
+          <div class="touch flex" data-key="l">L</div>
+          <div class="touch flex" data-key="m">M</div>
+          <div class="touch flex" data-key="p">P</div>
+        </div>
+      </section>
+    </main>
 
-<footer>
-<p id="copyright"></p>
-</footer>
-</body>
+    <footer>
+      <p id="copyright"></p>
+    </footer>
+  </body>
 </html>
