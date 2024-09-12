@@ -1,0 +1,13 @@
+:root {
+  /* colors */
+  --clr: 0;
+  --clr-black: var(--clr), 10%, 10%;
+  --clr-grey: var(--clr), 10%, 50%;
+  --clr-white: var(--clr), 10%, 90%;
+  --color: var(--clr), 100%, 50%;
+  --clr-lighter: var(--clr), 100%, 80%;
+  --clr-darker: var(--clr), 100%, 20%;
+  --clr-accent90: calc(var(--clr) + 90), 50%, 50%;
+  --clr-accent180: calc(var(--clr) + 180), 50%, 50%;
+  --clr-accent270: calc(var(--clr) + 270), 50%, 50%;
+}

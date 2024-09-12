@@ -1,0 +1,146 @@
+/* GLOBALS */
+.debug {
+  border: 0.2rem solid red;
+  background: yellow;
+}
+
+/* display */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.opt-sm {
+  @media (width > 40rem) {
+    display: none;
+  }
+}
+.opt-bg {
+  display: none;
+  @media (width > 40rem) {
+    display: block;
+  }
+}
+
+/* links & buttons */
+.link,
+.bt {
+  display: inline-block;
+  font-weight: bold;
+  color: currentColor;
+}
+.link {
+  color: white;
+  background-color: hsl(var(--clr-darker));
+  text-decoration: none;
+  &:visited {
+    color: black;
+    background-color: hsl(var(--clr-lighter));
+  }
+}
+.bt {
+  cursor: pointer;
+  border: none;
+  color: black;
+  background-color: white;
+  box-shadow: 0.2rem 0.2rem 0.2rem black;
+  &:active {
+    box-shadow: inset 0.2rem 0.2rem 0.2rem black;
+  }
+}
+
+/* forms */
+.form {
+  display: grid;
+  margin: 1rem auto;
+  padding: 0.4rem;
+  gap: 0.4rem;
+
+  & > * {
+    padding: 1rem;
+    font-weight: bold;
+  }
+  & > input,
+  textarea {
+    box-shadow: -0.2rem -0.2rem 0.2rem black;
+  }
+}
+
+/* COMPONENTS */
+#notifications {
+  position: fixed;
+  z-index: 1000;
+  inset: 2rem 2rem auto auto;
+
+  p {
+    padding: 1rem;
+    color: white;
+    text-shadow: 0.1rem 0.1rem black;
+    background-color: hsl(240, 100%, 30%);
+
+    &.success {
+      background-color: hsl(120, 100%, 30%);
+    }
+    &.error {
+      background-color: hsl(0, 100%, 30%);
+    }
+  }
+}
+
+#nav-page {
+  .flex {
+    flex-wrap: wrap;
+    @media (width> 40rem) {
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+#copyright {
+  text-align: right;
+  font-size: 0.8rem;
+
+  .link {
+    font-size: 0.8rem;
+  }
+}
+
+#to-top {
+  position: fixed;
+  z-index: 100;
+  inset: auto 2rem 3rem auto;
+  cursor: pointer;
+  width: 3rem;
+  aspect-ratio: 1/1;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: conic-gradient(
+    hsl(var(--clr-darker)),
+    hsl(var(--clr-lighter)),
+    hsl(var(--clr-darker))
+  );
+  @media (hover) {
+    opacity: 0.2;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+#theme {
+  position: absolute;
+  z-index: 20;
+  inset: 6rem 2rem auto auto;
+
+  button {
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: currentColor;
+    cursor: pointer;
+  }
+}
