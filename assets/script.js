@@ -16,40 +16,73 @@ export const fetchFn = new Fetch();
 dom.setCopyright();
 
 // app
-const piano = dom.select("#piano");
+const touches = dom.selectAll(".touch");
+const stopBt = dom.select("#piano > p");
 const keys = ["q", "s", "d", "f", "g", "h", "j", "k", "l", "m", "p"];
-const audios = await Promise.all(
-  keys.map(
-    (k) =>
-      new Promise((res) => {
-        const audio = new Audio(`./sounds/${k}.mp3`);
-        audio.load();
-        res(audio);
-      })
-  )
-);
-const sounds = {};
-keys.forEach((k, i) => (sounds[k] = audios[i]));
+const sounds = await loadSounds(keys);
+let sound;
 
 /**
- * @param {HTMLElement} elem
+ * @param {String[]} sounds
  */
-function activeTouch(elem) {
-  dom.modClass(elem, "active");
-  setTimeout(() => dom.modClass(elem, "active", "del"), 100);
+async function loadSounds(audios) {
+  try {
+    const prms = await Promise.all(
+      audios.map((a) => Promise.resolve(new Audio(`./sounds/${a}.wav`)))
+    );
+    const sounds = {};
+    audios.forEach((a, i) => (sounds[a] = prms[i]));
+    return sounds;
+  } catch (err) {
+    return dom.error(err);
+  }
 }
 /**
- * @param {KeyboardEvent|PointerEvent} e
+ * @param {KeyboardEvent} e
+ */
+function activeTouch(e) {
+  const key = e.key.toLowerCase();
+  if (keys.includes(key)) {
+    const touch = dom.select(`[data-key=${key}]`);
+    dom.modClass(touch, "active");
+  } else if (key === " ") {
+    dom.modClass(stopBt, "active");
+  }
+}
+/**
+ * @param {KeyboardEvent} e
  */
 async function playSound(e) {
-  const key =
-    e instanceof PointerEvent ? e.target.dataset.key : e.key.toLowerCase();
-  if (!keys.includes(key)) return;
+  try {
+    const key = e.key.toLowerCase();
+    if (!keys.includes(key)) return;
 
-  const touch = dom.select(`[data-key=${key}]`);
-  activeTouch(touch);
-  await sounds[key].play();
+    touches.forEach((t) => dom.modClass(t, "active", "del"));
+    if (sound === sounds[key]) {
+      sound.load();
+      await sound.play();
+      return;
+    }
+    sound = sounds[key];
+    await sound.play();
+  } catch (err) {
+    return dom.error(err);
+  }
+}
+/**
+ * @param {KeyboardEvent} e
+ */
+function stop(e) {
+  const key = e.key.toLowerCase();
+  if (key !== " ") return;
+
+  const soundsTab = Object.values(sounds);
+  for (let i = 0; i < soundsTab.length; i++) {
+    soundsTab[i].load();
+  }
+  dom.modClass(stopBt, "active", "del");
 }
 
-addEventListener("keydown", playSound);
-piano.addEventListener("click", playSound);
+addEventListener("keydown", activeTouch);
+addEventListener("keyup", playSound);
+addEventListener("keyup", stop);
