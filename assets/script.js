@@ -20,7 +20,6 @@ const touches = dom.selectAll(".touch");
 const stopBt = dom.select("#piano > p");
 const keys = ["q", "s", "d", "f", "g", "h", "j", "k", "l", "m", "p"];
 const sounds = await loadSounds(keys);
-let sound;
 
 /**
  * @param {String[]} sounds
@@ -58,13 +57,8 @@ async function playSound(e) {
     if (!keys.includes(key)) return;
 
     touches.forEach((t) => dom.modClass(t, "active", "del"));
-    if (sound === sounds[key]) {
-      sound.load();
-      await sound.play();
-      return;
-    }
-    sound = sounds[key];
-    await sound.play();
+    sounds[key].load();
+    await sounds[key].play();
   } catch (err) {
     return dom.error(err);
   }
